@@ -23,7 +23,7 @@ namespace ControlLogUI
                 using (var engine = new QQmlApplicationEngine())
                 {
                     serviceCollection.AddSingleton<QCoreApplication>(app);
-                    engine.Load("UI/View/ControlLogUI.qml");
+                    engine.Load("UI/View/Main.qml");
                     app.Exec();
                 }
             }

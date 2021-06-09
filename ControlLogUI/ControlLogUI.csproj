@@ -15,7 +15,8 @@
 
     <ItemGroup>
       <Folder Include="UI\Controller" />
-      <Folder Include="UI\View" />
+      <Folder Include="UI\View\fonts" />
+        <None Include="UI\**" CopyToOutputDirectory="Always" />
     </ItemGroup>
 
 </Project>
