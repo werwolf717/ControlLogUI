@@ -1,14 +1,18 @@
 import QtQuick 2.12
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.11
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
+import QtQuick.Layouts 1.12
+import test 1.0
 
 import "../imports"
 import "../fonts"
 
 Rectangle {
-    id: rectangle
+    id: screenLogIN
     width: Constants.login_width
     height: Constants.login_height
+    
+    property UIController target: null
 
     color: Constants.backgroundColor
 
@@ -136,4 +140,20 @@ Rectangle {
             }
         }
     }
+    
+        UIController {
+            id: ctrl
+    
+           /* Component.onCompleted: {
+                ctrl.initialize()
+            }
+    
+            function handleConnect() {
+                ctrl.connect()
+            }
+    
+            function handleDisconnect() {
+                ctrl.disconnect()
+            }*/
+        }
 }

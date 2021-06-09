@@ -2,6 +2,7 @@
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.12
+import test 1.0
 
 import "imports"
 import "Page"
@@ -14,5 +15,6 @@ ApplicationWindow {
     title: qsTr("UI")
 
     ScreenLogIN {
+        id: screenLogIN
     }
 }

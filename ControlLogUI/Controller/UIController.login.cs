@@ -12,7 +12,7 @@ namespace ControlLogUI.Controller
         private IDispatcher _dispatcher;
         
         [NotifySignal]
-        public List<string> dbList => new List<string>(){"22", "33"};
+        public List<string> dbList => new List<string>(){"1", "2"};
         public string SelecteddbList { get; set; }
     }
 }
