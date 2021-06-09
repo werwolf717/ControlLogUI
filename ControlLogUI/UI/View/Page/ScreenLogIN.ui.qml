@@ -113,7 +113,7 @@ Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 model: Net.toListModel(ctrl.dbList)
-                onActivated: ctrl.selectedPort = currentText
+                onActivated: ctrl.selecteddbList = currentText
             }
         }
 
