@@ -108,6 +108,8 @@ Rectangle {
                 Layout.maximumWidth: 240
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+                model: Net.toListModel(ctrl.dbList)
+                onActivated: ctrl.selectedPort = currentText
             }
         }
 

@@ -3,6 +3,8 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
+        <Company>Radico</Company>
+       <!-- <ApplicationIcon>images\pixlr-bg-result.ico</ApplicationIcon>-->
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="UI\Controller" />
+      <Folder Include="images" />
       <Folder Include="UI\View\fonts" />
         <None Include="UI\**" CopyToOutputDirectory="Always" />
     </ItemGroup>
