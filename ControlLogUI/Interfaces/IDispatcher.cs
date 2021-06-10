@@ -12,5 +12,6 @@ namespace ControlLogUI.Interfaces
         bool IsMainThread { get; }
 
         void VerifyMainThread();
+        public void ExitApp();
     }
 }

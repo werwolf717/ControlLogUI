@@ -14,7 +14,8 @@ Rectangle {
     
     property UIController target: null
     signal cancel()
-    onTargetChanged: cancel.connect(target.handleCancelButton)
+    signal access()
+    onTargetChanged: cancel.connect(target.handleCancelButton), access.connect(target.handleAccessButton)
     color: Constants.backgroundColor
 
     GridLayout {
@@ -132,6 +133,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 Layout.fillHeight: false
                 Layout.fillWidth: false
+                onClicked: access()
             }
 
             Button {

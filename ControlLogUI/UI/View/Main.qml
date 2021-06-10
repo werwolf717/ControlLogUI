@@ -12,7 +12,7 @@ ApplicationWindow {
     visible: true
     width: Constants.login_width
     height: Constants.login_height
-    title: qsTr("UI")
+    title: qsTr("Login")
 
     ScreenLogIN {
         id: screenLogIN
@@ -28,11 +28,11 @@ ApplicationWindow {
 
        /* function handleConnect() {
             ctrl.connect()
-        }
-
-        function handleDisconnect() {
-            ctrl.disconnect()
         }*/
+
+        function handleAccessButton() {
+            ctrl.access_button_click()
+        }
         
         function handleCancelButton()
         {

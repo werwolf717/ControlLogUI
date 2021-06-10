@@ -34,5 +34,9 @@ namespace ControlLogUI.Classes
             throw new InvalidOperationException(
                 "The calling thread cannot access this object because a different thread owns it.");
         }
+        public void ExitApp()
+        {
+            QCoreApplication.Quit();
+        }
     }
 }

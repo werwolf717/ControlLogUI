@@ -12,7 +12,7 @@ namespace ControlLogUI
     class Program
     {
         [STAThread]
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             var serviceCollection = new ServiceCollection();
             
@@ -31,7 +31,7 @@ namespace ControlLogUI
                     Qml.Net.Qml.RegisterType<UIController>("test");
                     TypeCreator.Current = TypeCreator.FromDelegate((type) => serviceProvider.GetRequiredService(type));
                     engine.Load("UI/View/Main.qml");
-                    app.Exec();
+                    return app.Exec();
                 }
             }
         }
