@@ -13,6 +13,8 @@ namespace ControlLogUI.Controller
         
         [NotifySignal]
         public List<string> dbList => new List<string>(){"1", "2"};
+        
         public string SelecteddbList { get; set; }
+        public bool enableWait { get; set; }
     }
 }

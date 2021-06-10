@@ -14,6 +14,7 @@ namespace ControlLogUI.Controller
         }
         public void Initialize()
         {
+            enableWait = false;
         }
         public void Cancel_button_click()
         {
@@ -23,6 +24,7 @@ namespace ControlLogUI.Controller
         public void Access_button_click()
         {
             Console.WriteLine("Press the ok button!");
+            QCoreApplication.Exit(1);
         }
     }
 }

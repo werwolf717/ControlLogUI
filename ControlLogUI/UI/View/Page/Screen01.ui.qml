@@ -6,7 +6,8 @@ import QtQuick.Layouts 1.12
 import "../imports"
 import "../fonts"
 
-Rectangle {
+ApplicationWindow {
+    visible: true
     width: Constants.width
     height: Constants.height
 
@@ -15,6 +16,6 @@ Rectangle {
     Text {
         text: qsTr("Hello ControlLogUI")
         anchors.centerIn: parent
-        font.family: Constants.font.family
+        //font.family: Constants.font.family
     }
 }

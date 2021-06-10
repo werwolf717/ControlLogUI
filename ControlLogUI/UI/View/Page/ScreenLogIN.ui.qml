@@ -9,6 +9,7 @@ import "../fonts"
 
 Rectangle {
     id: screenLogIN
+    enabled: true
     width: Constants.login_width
     height: Constants.login_height
     

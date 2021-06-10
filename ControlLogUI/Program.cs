@@ -31,7 +31,16 @@ namespace ControlLogUI
                     Qml.Net.Qml.RegisterType<UIController>("test");
                     TypeCreator.Current = TypeCreator.FromDelegate((type) => serviceProvider.GetRequiredService(type));
                     engine.Load("UI/View/Main.qml");
-                    return app.Exec();
+                    int res = app.Exec();
+
+                    if (res == 1)
+                    {
+                        engine.Dispose();
+                        var engineMain = new QQmlApplicationEngine();
+                        engineMain.Load("UI/View/Page/Screen01.ui.qml");
+                        res = app.Exec();
+                    }
+                    return res;
                 }
             }
         }
