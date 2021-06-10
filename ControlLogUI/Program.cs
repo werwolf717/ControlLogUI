@@ -23,13 +23,13 @@ namespace ControlLogUI
             {
                 using (var engine = new QQmlApplicationEngine())
                 {
-                  /*  serviceCollection.AddSingleton<QCoreApplication>(app);
+                    serviceCollection.AddSingleton<QCoreApplication>(app);
                     serviceCollection.AddSingleton<IDispatcher, QtDispatcher>();
                     serviceCollection.AddSingleton<UIController>();
-                    var serviceProvider = serviceCollection.BuildServiceProvider();*/
+                    var serviceProvider = serviceCollection.BuildServiceProvider();
                     
                     Qml.Net.Qml.RegisterType<UIController>("test");
-                    //TypeCreator.Current = TypeCreator.FromDelegate((type) => serviceProvider.GetRequiredService(type));
+                    TypeCreator.Current = TypeCreator.FromDelegate((type) => serviceProvider.GetRequiredService(type));
                     engine.Load("UI/View/Main.qml");
                     app.Exec();
                 }

@@ -16,5 +16,27 @@ ApplicationWindow {
 
     ScreenLogIN {
         id: screenLogIN
+        target: ctrl
+    }
+    
+    UIController {
+        id: ctrl
+
+        Component.onCompleted: {
+            ctrl.initialize()
+        }
+
+       /* function handleConnect() {
+            ctrl.connect()
+        }
+
+        function handleDisconnect() {
+            ctrl.disconnect()
+        }*/
+        
+        function handleCancelButton()
+        {
+            ctrl.cancel_button_click()
+        }
     }
 }

@@ -13,7 +13,8 @@ Rectangle {
     height: Constants.login_height
     
     property UIController target: null
-
+    signal cancel()
+    onTargetChanged: cancel.connect(target.handleCancelButton)
     color: Constants.backgroundColor
 
     GridLayout {
@@ -137,23 +138,8 @@ Rectangle {
                 id: button1
                 text: qsTr("Cancel")
                 Layout.fillHeight: false
+                onClicked: cancel()
             }
         }
     }
-    
-        UIController {
-            id: ctrl
-    
-           /* Component.onCompleted: {
-                ctrl.initialize()
-            }
-    
-            function handleConnect() {
-                ctrl.connect()
-            }
-    
-            function handleDisconnect() {
-                ctrl.disconnect()
-            }*/
-        }
 }
