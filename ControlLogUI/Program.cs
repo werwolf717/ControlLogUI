@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using ControlLogUI.Controller;
 using Qml.Net;
 using Qml.Net.Internal;
+using Microsoft.Win32;
 using Qml.Net.Runtimes;
 using ControlLogUI.Interfaces;
 using ControlLogUI.Classes;
@@ -18,6 +21,17 @@ namespace ControlLogUI
             
             RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
             QQuickStyle.SetStyle("Material");
+
+            
+            RegistryKey reg = Registry.LocalMachine.OpenSubKey("SOFTWARE")?.OpenSubKey("ORACLE");
+            List<string> oraSubKeyArray = reg?.GetSubKeyNames().ToList();
+
+            if (oraSubKeyArray != null && oraSubKeyArray.Count != 0)
+            {
+                Console.WriteLine(oraSubKeyArray.Find(s => (reg?.OpenSubKey(s)?.GetValue("ORACLE_HOME") != null))); 
+            }
+            else
+                Console.WriteLine("222222222");
 
             using (var app = new QGuiApplication(args))
             {
