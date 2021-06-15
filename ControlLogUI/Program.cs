@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ControlLogUI.Controller;
 using Qml.Net;
+using System.IO;
 using Qml.Net.Internal;
 using Microsoft.Win32;
 using Qml.Net.Runtimes;
@@ -22,16 +23,41 @@ namespace ControlLogUI
             RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
             QQuickStyle.SetStyle("Material");
 
-            
-            RegistryKey reg = Registry.LocalMachine.OpenSubKey("SOFTWARE")?.OpenSubKey("ORACLE");
-            List<string> oraSubKeyArray = reg?.GetSubKeyNames().ToList();
 
-            if (oraSubKeyArray != null && oraSubKeyArray.Count != 0)
+
+
+            string tnsNamesContent = File.Exists("db/tnsnames.ora") ? File.ReadAllText("db/tnsnames.ora") : null;
+
+
+
+
+            if (tnsNamesContent == null)
             {
-                Console.WriteLine(oraSubKeyArray.Find(s => (reg?.OpenSubKey(s)?.GetValue("ORACLE_HOME") != null))); 
+
+                RegistryKey reg = Registry.LocalMachine.OpenSubKey("SOFTWARE")?.OpenSubKey("ORACLE");
+                string folderName = null;
+                List<string> oraSubKeyArray = reg?.GetSubKeyNames().ToList();
+
+                if (oraSubKeyArray != null)
+                {
+                    folderName = oraSubKeyArray.Find(s => (reg?.OpenSubKey(s)?.GetValue("ORACLE_HOME") != null));
+                }
+
+                if (folderName == null)
+                {
+                    reg = Registry.LocalMachine.OpenSubKey("SOFTWARE")?.OpenSubKey("WOW6432Node")?.OpenSubKey("ORACLE");
+                    oraSubKeyArray = reg?.GetSubKeyNames().ToList();
+                    if (oraSubKeyArray != null)
+                    {
+                        folderName = oraSubKeyArray.Find(s => (reg?.OpenSubKey(s)?.GetValue("ORACLE_HOME") != null));
+                    }
+                }
+
+                string oraHome = reg?.OpenSubKey(folderName)?.GetValue("ORACLE_HOME").ToString();
+                Console.WriteLine(oraHome ?? "Unknown");
             }
-            else
-                Console.WriteLine("222222222");
+
+            
 
             using (var app = new QGuiApplication(args))
             {
