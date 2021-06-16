@@ -20,7 +20,7 @@ ApplicationWindow {
 
     ScreenLogIN {
         id: screenLogIN
-        target: ctrl
+        target: ctrlMain
         
         BusyIndicator {
                 id: busyIndicator
@@ -34,27 +34,23 @@ ApplicationWindow {
             }
     }
     
-    UIController {
-        id: ctrl
+    UIControllerMain {
+        id: ctrlMain
 
         Component.onCompleted: {
-            ctrl.initialize()
+            ctrlMain.initialize()
             mainWindow.title = "Login"
         }
-
-       /* function handleConnect() {
-            ctrl.connect()
-        }*/
 
         function handleAccessButton() {
             screenLogIN.enabled = false;
             busyIndicator.visible = true;
-            ctrl.access_button_click()
+           // ctrlMain.access_button_click()
         }
         
         function handleCancelButton()
         {
-            ctrl.cancel_button_click()
+           // ctrlMain.cancel_button_click()
         }
     }
 }

@@ -13,10 +13,13 @@ Rectangle {
     width: Constants.login_width
     height: Constants.login_height
     
-    property UIController target: null
+    property UIControllerMain target: null
     signal cancel()
     signal access()
-    onTargetChanged: cancel.connect(target.handleCancelButton), access.connect(target.handleAccessButton)
+    onTargetChanged: cancel.connect(target.handleCancelButton), 
+                    cancel.connect(ctrlLogin.handleCancelButton), 
+                    access.connect(target.handleAccessButton),
+                    access.connect(ctrlLogin.handleAccessButton)
     color: Constants.backgroundColor
 
     GridLayout {
@@ -115,8 +118,7 @@ Rectangle {
                 Layout.maximumWidth: 240
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                model: Net.toListModel(ctrl.dbList)
-                onActivated: ctrl.selecteddbList = currentText
+                model: Net.toListModel(ctrlLogin.dbList)
             }
         }
 
@@ -145,4 +147,22 @@ Rectangle {
             }
         }
     }
+    
+        UIController {
+            id: ctrlLogin
+            
+            function handleAccessButton() 
+            {
+                ctrlLogin.user = textField.text
+                ctrlLogin.password = textField1.text
+                ctrlLogin.selecteddbList = comboBox.currentText
+                ctrlLogin.access_button_click()
+            }
+            
+            function handleCancelButton()
+            {
+                ctrlLogin.cancel_button_click()
+            }
+        }
+        
 }

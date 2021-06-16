@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 using ControlLogUI.Controller;
 using Qml.Net;
-using System.IO;
-using Qml.Net.Internal;
-using Microsoft.Win32;
 using Qml.Net.Runtimes;
 using ControlLogUI.Interfaces;
 using ControlLogUI.Classes;
@@ -22,41 +19,9 @@ namespace ControlLogUI
             
             RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
             QQuickStyle.SetStyle("Material");
-
-
-
-
-            string tnsNamesContent = File.Exists("db/tnsnames.ora") ? File.ReadAllText("db/tnsnames.ora") : null;
-
-
-
-
-            if (tnsNamesContent == null)
-            {
-
-                RegistryKey reg = Registry.LocalMachine.OpenSubKey("SOFTWARE")?.OpenSubKey("ORACLE");
-                string folderName = null;
-                List<string> oraSubKeyArray = reg?.GetSubKeyNames().ToList();
-
-                if (oraSubKeyArray != null)
-                {
-                    folderName = oraSubKeyArray.Find(s => (reg?.OpenSubKey(s)?.GetValue("ORACLE_HOME") != null));
-                }
-
-                if (folderName == null)
-                {
-                    reg = Registry.LocalMachine.OpenSubKey("SOFTWARE")?.OpenSubKey("WOW6432Node")?.OpenSubKey("ORACLE");
-                    oraSubKeyArray = reg?.GetSubKeyNames().ToList();
-                    if (oraSubKeyArray != null)
-                    {
-                        folderName = oraSubKeyArray.Find(s => (reg?.OpenSubKey(s)?.GetValue("ORACLE_HOME") != null));
-                    }
-                }
-
-                string oraHome = reg?.OpenSubKey(folderName)?.GetValue("ORACLE_HOME").ToString();
-                Console.WriteLine(oraHome ?? "Unknown");
-            }
-
+            
+            
+            
             
 
             using (var app = new QGuiApplication(args))
@@ -65,9 +30,11 @@ namespace ControlLogUI
                 {
                     serviceCollection.AddSingleton<QCoreApplication>(app);
                     serviceCollection.AddSingleton<IDispatcher, QtDispatcher>();
+                    serviceCollection.AddSingleton<UIControllerMain>();
                     serviceCollection.AddSingleton<UIController>();
                     var serviceProvider = serviceCollection.BuildServiceProvider();
                     
+                    Qml.Net.Qml.RegisterType<UIControllerMain>("test");
                     Qml.Net.Qml.RegisterType<UIController>("test");
                     TypeCreator.Current = TypeCreator.FromDelegate((type) => serviceProvider.GetRequiredService(type));
                     engine.Load("UI/View/Main.qml");

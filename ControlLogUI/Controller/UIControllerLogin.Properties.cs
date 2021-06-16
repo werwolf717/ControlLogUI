@@ -12,9 +12,10 @@ namespace ControlLogUI.Controller
         private IDispatcher _dispatcher;
         
         [NotifySignal]
-        public List<string> dbList => new List<string>(){"1", "2"};
+        public List<string> dbList => GetConnectionNames();
+        public string selecteddbList { get; set; }
+        public string user { get; set; }
+        public string password { get; set; }
         
-        public string SelecteddbList { get; set; }
-        public bool enableWait { get; set; }
     }
 }
