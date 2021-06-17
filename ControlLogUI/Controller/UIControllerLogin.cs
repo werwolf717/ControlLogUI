@@ -15,6 +15,10 @@ namespace ControlLogUI.Controller
 
         private List<string> GetConnectionNames()
         {
+
+            user = Properties.Settings.Default.username;
+            selecteddbIndex = Login.GetProp().IndexOf(Properties.Settings.Default.selectedDB);
+            
             Console.WriteLine(Properties.Settings.Default.username);
             Console.WriteLine(Properties.Settings.Default.selectedDB);
 

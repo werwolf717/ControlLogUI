@@ -57,7 +57,7 @@ Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 placeholderText: qsTr("Enter user name")
-                text: target.user
+                text: ctrlLogin.user
             }
         }
 
@@ -120,6 +120,7 @@ Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 model: Net.toListModel(ctrlLogin.dbList)
+                currentIndex: ctrlLogin.selecteddbIndex
             }
         }
 

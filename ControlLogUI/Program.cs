@@ -39,10 +39,20 @@ namespace ControlLogUI
                     TypeCreator.Current = TypeCreator.FromDelegate((type) => serviceProvider.GetRequiredService(type));
                     engine.Load("UI/View/Main.qml");
                     int res = app.Exec();
-
+                    
                     if (res == 1)
                     {
                         engine.Dispose();
+                        serviceProvider.Dispose();
+                        serviceCollection.Clear();
+                        
+                        serviceCollection.AddSingleton<QCoreApplication>(app);
+                        serviceCollection.AddSingleton<IDispatcher, QtDispatcher>();
+                        serviceCollection.AddSingleton<UIControllerForm>();
+                        serviceProvider = serviceCollection.BuildServiceProvider();
+                        Qml.Net.Qml.RegisterType<UIControllerForm>("test");
+                        TypeCreator.Current = TypeCreator.FromDelegate((type) => serviceProvider.GetRequiredService(type));
+                        
                         var engineMain = new QQmlApplicationEngine();
                         engineMain.Load("UI/View/Page/ScreenInput.ui.qml");
                         res = app.Exec();
