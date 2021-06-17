@@ -14,7 +14,21 @@ namespace ControlLogUI.Controller
         [NotifySignal]
         public List<string> dbList => GetConnectionNames();
         public string selecteddbList { get; set; }
-        public string user { get; set; }
+
+        private string _user;
+
+        [NotifySignal]
+        public string user
+        {
+            get => _user;
+            set
+            {
+                _user = value;
+                //this.ActivateSignal("readerStatusChanged");
+            }
+        }
+        
+        [NotifySignal]
         public string password { get; set; }
         
     }

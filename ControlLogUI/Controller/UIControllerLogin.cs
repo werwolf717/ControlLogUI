@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using ControlLogUI.Interfaces;
 using ControlLogUI.Classes;
 using Qml.Net;
-using Oracle.ManagedDataAccess.Client;
 
 namespace ControlLogUI.Controller
 {
@@ -16,9 +15,10 @@ namespace ControlLogUI.Controller
 
         private List<string> GetConnectionNames()
         {
-            Login Clogin = new Login();
-            ILogin.test();
-            return Clogin.GetProp();
+            Console.WriteLine(Properties.Settings.Default.username);
+            Console.WriteLine(Properties.Settings.Default.selectedDB);
+
+            return Login.GetProp();
         }
         
         public void Cancel_button_click()
@@ -32,15 +32,17 @@ namespace ControlLogUI.Controller
             Console.WriteLine(user);
             Console.WriteLine(password);
             Console.WriteLine(selecteddbList);
-            Console.WriteLine(Resources.test);
 
-            using (OracleConnection connection = new OracleConnection())
-            {
-                connection.ConnectionString = "User ID=droppings; Password=droppings; Data Source=(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.0.1.27)(PORT = 1521)))(CONNECT_DATA = (SERVICE_NAME = vonppdb)));";
-                connection.Open();
-            }
-            
-            QCoreApplication.Exit(1);
+            Properties.Settings.Default.username = user;
+            Properties.Settings.Default.selectedDB = selecteddbList;
+            Properties.Settings.Default.Save();
+
+            if(DB.CheckLogin(user, password, Login.connProp[selecteddbList]))
+                QCoreApplication.Exit(1);
+            else
+                QCoreApplication.Exit(2);
+
+
         }
 
     }

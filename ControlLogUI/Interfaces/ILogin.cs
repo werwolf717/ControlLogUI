@@ -28,10 +28,5 @@ namespace ControlLogUI.Interfaces
         List<string> GetProp();
         Dictionary<string, ConnectionProperties> ParseConfig(string _tnsname);
 
-        public static void test()
-        {
-            Console.WriteLine("TEST!!!!!!!!!!!");
-        }
-
     }
 }

@@ -9,11 +9,11 @@ using System.Text.RegularExpressions;
 
 namespace ControlLogUI.Classes
 {
-    public class Login : ILogin
+    public class Login
     {
-        public Dictionary<string, ILogin.ConnectionProperties> connProp { get; set; }
+        public static Dictionary<string, ILogin.ConnectionProperties> connProp { get; set; }
 
-        public List<string> GetProp()
+        public static List<string> GetProp()
         {
             string tnsNamesContent = File.Exists("db/tnsnames.ora") ? File.ReadAllText("db/tnsnames.ora") : null;
             if (tnsNamesContent == null)
@@ -60,8 +60,15 @@ namespace ControlLogUI.Classes
             return connProp.Keys.ToList();
         }
 
-        public Dictionary<string, ILogin.ConnectionProperties> ParseConfig(string _tnsname)
+        public static Dictionary<string, ILogin.ConnectionProperties> ParseConfig(string _tnsname)
         {
+            while (_tnsname.Contains("#"))
+            {
+                string _str = _tnsname.Substring(_tnsname.IndexOf("#"));
+                _str = _str.Substring(0, _str.IndexOf('\n'));
+                _tnsname = _tnsname.Replace(_str, String.Empty);
+            }
+            
             string pattern = @"(?imsx)
                                 ^(?<name>\S+)\s*=
                                 (?=.*?\(HOST\s*=\s*(?<host>\S+?)\))

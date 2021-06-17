@@ -11,6 +11,7 @@
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0-preview.4.21253.7" />
       <PackageReference Include="Microsoft.Win32.Registry" Version="6.0.0-preview.4.21253.7" />
       <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.21.1" />
+      <PackageReference Include="phirSOFT.SettingsService.ApplicationSettingsService" Version="0.2.3" />
       <PackageReference Include="Qml.Net" Version="0.12.0-alpha.3" />
       <PackageReference Include="Qml.Net.LinuxBinaries" Version="0.12.0-alpha.3" />
       <PackageReference Include="Qml.Net.OSXBinaries" Version="0.12.0-alpha.3" />
@@ -23,21 +24,6 @@
       <Folder Include="UI\View\fonts" />
         <None Include="UI\**" CopyToOutputDirectory="Always" />
         <None Include="db\**" CopyToOutputDirectory="Always" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Update="Resources.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="Resources.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Resources.resx</DependentUpon>
-      </Compile>
     </ItemGroup>
 
 </Project>

@@ -1,12 +1,16 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Data;
 using System.Runtime.InteropServices;
+using System.Xml.Xsl;
 using ControlLogUI.Controller;
 using Qml.Net;
 using Qml.Net.Runtimes;
 using ControlLogUI.Interfaces;
 using ControlLogUI.Classes;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ControlLogUI
 {
@@ -20,10 +24,6 @@ namespace ControlLogUI
             RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
             QQuickStyle.SetStyle("Material");
             
-            
-            
-            
-
             using (var app = new QGuiApplication(args))
             {
                 using (var engine = new QQmlApplicationEngine())
@@ -44,7 +44,7 @@ namespace ControlLogUI
                     {
                         engine.Dispose();
                         var engineMain = new QQmlApplicationEngine();
-                        engineMain.Load("UI/View/Page/Screen01.ui.qml");
+                        engineMain.Load("UI/View/Page/ScreenInput.ui.qml");
                         res = app.Exec();
                     }
                     return res;
