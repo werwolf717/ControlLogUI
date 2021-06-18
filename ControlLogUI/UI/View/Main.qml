@@ -40,9 +40,11 @@ ApplicationWindow {
         Component.onCompleted: {
             ctrlMain.initialize()
             mainWindow.title = "Login"
+            console.log("clicked")
         }
 
         function handleAccessButton() {
+        console.log("clicked")
             screenLogIN.enabled = false;
             busyIndicator.visible = true;
            // ctrlMain.access_button_click()
