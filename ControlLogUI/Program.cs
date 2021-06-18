@@ -42,20 +42,21 @@ namespace ControlLogUI
                     
                     if (res == 1)
                     {
-                        engine.Dispose();
-                        serviceProvider.Dispose();
                         serviceCollection.Clear();
-                        
+                        engine.Dispose();
+
+                        var engineForm = new QQmlApplicationEngine();
+
                         serviceCollection.AddSingleton<QCoreApplication>(app);
                         serviceCollection.AddSingleton<IDispatcher, QtDispatcher>();
                         serviceCollection.AddSingleton<UIControllerForm>();
                         serviceProvider = serviceCollection.BuildServiceProvider();
+                        
                         Qml.Net.Qml.RegisterType<UIControllerForm>("test");
                         TypeCreator.Current = TypeCreator.FromDelegate((type) => serviceProvider.GetRequiredService(type));
-                        
-                        var engineMain = new QQmlApplicationEngine();
-                        engineMain.Load("UI/View/Page/ScreenInput.ui.qml");
+                        engineForm.Load("UI/View/Page/ScreenInput.ui.qml");
                         res = app.Exec();
+                       
                     }
                     return res;
                 }

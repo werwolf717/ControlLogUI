@@ -80,7 +80,7 @@ Rectangle {
 
             TextField {
                 id: textField1
-                text: ""
+                text: ctrlLogin.password
                 horizontalAlignment: Text.AlignHCenter
                 clip: false
                 font.strikeout: false
@@ -166,5 +166,4 @@ Rectangle {
                 ctrlLogin.cancel_button_click()
             }
         }
-        
 }

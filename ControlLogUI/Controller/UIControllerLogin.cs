@@ -18,6 +18,7 @@ namespace ControlLogUI.Controller
 
             user = Properties.Settings.Default.username;
             selecteddbIndex = Login.GetProp().IndexOf(Properties.Settings.Default.selectedDB);
+            password = "12qwaszx";
             
             Console.WriteLine(Properties.Settings.Default.username);
             Console.WriteLine(Properties.Settings.Default.selectedDB);
