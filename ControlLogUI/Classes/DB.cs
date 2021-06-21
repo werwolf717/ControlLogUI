@@ -15,7 +15,7 @@ namespace ControlLogUI.Classes
                                    _connProp.Port + ")))(CONNECT_DATA = (SERVICE_NAME = " + _connProp.ServiceName +
                                    ")));";
 
-            if (GetUserData(connectionStr) == "")
+            if (GetUserData(connectionStr) == null)
                 return false;
             
             Properties.Settings.Default.connectionString = connectionStr;
@@ -24,9 +24,10 @@ namespace ControlLogUI.Classes
             return true;
         }
 
-        public static string GetUserData(string _connectionStr)
+        public static User? GetUserData(string _connectionStr)
         {
             string name = "";
+            User? _user = null;
             
             string queryString = "select " +
                                     "t.USERNAME," +
@@ -55,7 +56,7 @@ namespace ControlLogUI.Classes
                     OracleDataReader reader = command.ExecuteReader();
 
                     string _name = "", _sname = "", _family = "", _role = "";
-                    
+
                     while (reader.Read())
                     {
                         _family = reader["wor_family"].ToString();
@@ -71,16 +72,16 @@ namespace ControlLogUI.Classes
                             _role = "user";
                     }
 
-                    name = _family + " " + _name.Substring(0, 1) + "." + _sname.Substring(0, 1) + "., " + _role;
+                    _user = new User(_name, _sname, _family, _role);
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    return "";
+                    return _user;
                 }
             }
             
-            return name;
+            return _user;
         }
 
     }

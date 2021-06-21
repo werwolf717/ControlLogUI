@@ -12,5 +12,8 @@ namespace ControlLogUI.Controller
         
         [NotifySignal] 
         public string userName { get; set; }
+        
+        [NotifySignal] 
+        public string userRole { get; set; }
     }
 }

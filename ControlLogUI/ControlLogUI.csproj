@@ -24,6 +24,7 @@
       <Folder Include="UI\View\fonts" />
         <None Include="UI\**" CopyToOutputDirectory="Always" />
         <None Include="db\**" CopyToOutputDirectory="Always" />
+        <None Include="images\**" CopyToOutputDirectory="Always" />
     </ItemGroup>
 
 </Project>

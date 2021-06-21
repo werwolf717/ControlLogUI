@@ -11,8 +11,13 @@ namespace ControlLogUI.Controller
         public UIControllerForm(IDispatcher dispatcher)
         {
             _dispatcher = dispatcher;
-            userName = DB.GetUserData(Properties.Settings.Default.connectionString);
-            int i = 0;
+            User? _user = DB.GetUserData(Properties.Settings.Default.connectionString);
+
+            if (_user != null)
+            {
+                userName = ((User) _user).fullName + ",";
+                userRole = ((User) _user).role;
+            }
         }
     }
 }
