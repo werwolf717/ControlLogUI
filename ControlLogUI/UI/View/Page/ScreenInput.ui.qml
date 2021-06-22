@@ -124,6 +124,11 @@ ApplicationWindow {
                     color: "#ffffff"
                     Layout.fillHeight: true
                     Layout.fillWidth: true
+                    
+                    ColumnLayout {
+                        id: columnLayout44
+                        anchors.fill: parent
+                    }
                 }
 
                 Rectangle {

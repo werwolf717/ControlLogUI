@@ -34,6 +34,8 @@ namespace ControlLogUI
                     serviceCollection.AddSingleton<UIController>();
                     var serviceProvider = serviceCollection.BuildServiceProvider();
                     
+                    
+                    
                     Qml.Net.Qml.RegisterType<UIControllerMain>("test");
                     Qml.Net.Qml.RegisterType<UIController>("test");
                     TypeCreator.Current = TypeCreator.FromDelegate((type) => serviceProvider.GetRequiredService(type));
